@@ -79,7 +79,6 @@
             this.ListaGridView1.Name = "ListaGridView1";
             this.ListaGridView1.Size = new System.Drawing.Size(543, 109);
             this.ListaGridView1.TabIndex = 3;
-            this.ListaGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ListaGridView1_CellContentClick);
             // 
             // IdTextBox
             // 

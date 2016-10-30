@@ -41,12 +41,6 @@ namespace Detail
             EstudiantesComboBox.DisplayMember = "Nombres";
             EstudiantesComboBox.ValueMember = "EstudianteId";
         }
-
-        private void ListaGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-          
-        }
-
         private Grupos grupos = new Grupos();
 
         private void AgregarBoton_Click(object sender, EventArgs e)
