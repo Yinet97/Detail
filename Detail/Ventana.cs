@@ -22,17 +22,12 @@ namespace Detail
 
         private void AgregarEstBoton_Click(object sender, EventArgs e)
         {
-           /* Estudiantes E = new Estudiantes( );
-
-            if(EstudiantesBll.Guardar(E))
+            EstudiantesBll.Guardar(new Entidades.Estudiantes()
             {
-                MessageBox.Show("Guardado");
-            } */
-        }
-
-        private void EstudiantesComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-           
+                EstudianteId = Convert.ToInt32(IdEsttextBox.Text),
+                Nombres = NombreEstudianteTextBox.Text
+            });
+            EstudiantesComboBox.DataSource = EstudiantesBll.GetLista();
         }
 
         private void Ventana_Load(object sender, EventArgs e)
@@ -40,14 +35,87 @@ namespace Detail
             EstudiantesComboBox.DataSource = EstudiantesBll.GetLista();
             EstudiantesComboBox.DisplayMember = "Nombres";
             EstudiantesComboBox.ValueMember = "EstudianteId";
+            
         }
         private Grupos grupos = new Grupos();
 
         private void AgregarBoton_Click(object sender, EventArgs e)
         {
-           grupos.Estudiantes.Add(new Estudiantes((int)EstudiantesComboBox.SelectedValue, EstudiantesComboBox.Text));
+            grupos.Estudiantes.Add(new Estudiantes((int)EstudiantesComboBox.SelectedValue, EstudiantesComboBox.Text));
             ListaGridView1.DataSource = null;
             ListaGridView1.DataSource = grupos.Estudiantes;
+
+        }
+
+        private void BuscarBoton_Click(object sender, EventArgs e)
+        {
+            var grupo = GruposBll.Buscar(Convert.ToInt32(IdTextBox.Text));
+            if (grupo != null)
+            {
+                GrupoTextBox.Text = grupo.Nombre;
+            }
+        }
+
+        private void GuardarGrupo_Click(object sender, EventArgs e)
+        {
+            GruposBll.Guardar(new Grupos()
+            {
+                GrupoId = Convert.ToInt32(IdTextBox.Text),
+                Nombre = GrupoTextBox.Text
+            });
+        }
+
+        private void BuscarEstudiante_Click(object sender, EventArgs e)
+        {
+            var student = EstudiantesBll.Buscar(Convert.ToInt32(IdEsttextBox.Text));
+            if (student != null)
+            {
+                NombreEstudianteTextBox.Text = student.Nombres;
+            }
+        }
+
+        private void consultaEstudianteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UI.Consultas.Consulta c = new UI.Consultas.Consulta();
+            c.Show();
+        }
+
+        private void EliminarEstuBoton_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(IdEsttextBox.Text);
+
+            EstudiantesBll.Eliminar(id);
+            MessageBox.Show("Eliminado !");
+            EstudiantesComboBox.DataSource = EstudiantesBll.GetLista();
+            Limpiar();
+        }
+
+        private void EliminarGupoBoton_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(IdTextBox.Text);
+
+            GruposBll.Eliminar(id);
+            MessageBox.Show("Eliminado !");
+            EstudiantesComboBox.DataSource = EstudiantesBll.GetLista();
+            Limpiar();
+        }
+
+        public void Limpiar()
+        {
+            IdTextBox.Clear();
+            NombreEstudianteTextBox.Clear();
+            GrupoTextBox.Clear();
+            IdEsttextBox.Clear();
+        }
+
+        private void NuevoEstBoton_Click(object sender, EventArgs e)
+        {
+            Limpiar();
+        }
+
+        private void NuevoGrupoBoton_Click(object sender, EventArgs e)
+        {
+            Limpiar();
         }
     }
 }

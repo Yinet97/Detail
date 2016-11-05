@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="EstudiantesBll.cs" />
     <Compile Include="GruposBll.cs" />
+    <Compile Include="GruposEstudiandesBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Estudiantes.cs" />
     <Compile Include="Grupos.cs" />
+    <Compile Include="GruposEstudiantes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
